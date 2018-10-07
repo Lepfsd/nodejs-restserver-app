@@ -59,7 +59,7 @@ app.post('/usuario', [verificarToken, verificarRole], function(req, res) {
 			});
 		}
 
-		res.json({
+		res.status(201).json({
 			ok: true,
 			usuario: usuarioDB
 		});
@@ -104,7 +104,7 @@ app.delete('/usuario/:id', [verificarToken, verificarRole], function(req, res) {
 
 	Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
 		if(err){
-			return res.status(400).json({
+			return res.status(500).json({
 				ok: false,
 				err
 			});
